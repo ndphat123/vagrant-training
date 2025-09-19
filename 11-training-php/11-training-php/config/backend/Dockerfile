@@ -1,4 +1,4 @@
-FROM php:8.3.19-apache
+FROM php:8.3.9-apache
 
 # Declare composer version
 ENV COMPOSER_VERSION=2.7.7
