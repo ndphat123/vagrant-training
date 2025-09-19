@@ -6,7 +6,6 @@ volumes:
 services:
   web-backend:
     build: ./config/backend
-    container_name: web-backend
     ports:
       - 8080:80
     volumes:
@@ -21,10 +20,9 @@ services:
     restart: always
 
   web-mysql:
-    container_name: web-mysql
     image: "mysql:5.7.43"
     ports:
-        - 3306:3306
+      - 3306:3306
     volumes:
       - mysql-data:/var/lib/mysql
     environment:
@@ -35,12 +33,10 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: 1
 
   web-phpmyadmin:
-    container_name: phpmyadmin
     image: phpmyadmin/phpmyadmin
-    links:
-      - web-mysql:mysql
     ports:
       - "8081:80"
     environment:
       PMA_HOST: web-mysql
+      PMA_PORT: 3306
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
